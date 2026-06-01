@@ -1,0 +1,1160 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Administració i Gestió — IES Pasqual Calbó i Caldés</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,300&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #112240;
+  --navy2: #1e3a5f;
+  --gold: #c9962e;
+  --gold-light: #e8b854;
+  --cream: #f5f3ee;
+  --cream2: #ece9de;
+  --white: #ffffff;
+  --text: #1c2331;
+  --text-muted: #6b7480;
+  --border: #e2ddd4;
+  --success: #1e6b4f;
+  --radius: 12px;
+  --radius-sm: 8px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body { font-family: 'Plus Jakarta Sans', sans-serif; color: var(--text); background: var(--white); line-height: 1.6; }
+
+/* ── NAV ─────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(17,34,64,0.97);
+  backdrop-filter: blur(12px);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+  border-bottom: 1px solid rgba(201,150,46,0.25);
+}
+.nav-brand { display: flex; flex-direction: column; }
+.nav-brand-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.1rem; font-weight: 500;
+  color: var(--white); letter-spacing: 0.01em;
+}
+.nav-brand-sub { font-size: 0.7rem; color: rgba(255,255,255,0.5); letter-spacing: 0.05em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 1.5rem; list-style: none; }
+.nav-links a {
+  color: rgba(255,255,255,0.7); text-decoration: none;
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold-light); }
+.nav-cta {
+  background: var(--gold); color: var(--navy);
+  padding: 0.45rem 1.1rem; border-radius: var(--radius-sm);
+  font-size: 0.82rem; font-weight: 600; text-decoration: none;
+  transition: background 0.2s;
+}
+.nav-cta:hover { background: var(--gold-light); }
+.nav-menu-btn { display: none; background: none; border: none; cursor: pointer; }
+.nav-menu-btn span { display: block; width: 22px; height: 2px; background: white; margin: 5px 0; transition: 0.3s; }
+
+/* ── HERO ─────────────────────────────── */
+#hero {
+  background: var(--navy);
+  min-height: 92vh;
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+  padding: 6rem 2rem 4rem;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(201,150,46,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 20% 80%, rgba(30,58,95,0.8) 0%, transparent 50%);
+}
+.hero-grid {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image: linear-gradient(var(--gold) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--gold) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1100px; margin: 0 auto; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+}
+.hero-label {
+  display: inline-block;
+  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold);
+  border: 1px solid rgba(201,150,46,0.4);
+  padding: 0.3rem 0.8rem; border-radius: 20px;
+  margin-bottom: 1.5rem;
+}
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 700; line-height: 1.15;
+  color: var(--white); margin-bottom: 1.5rem;
+}
+.hero-title em { font-style: italic; color: var(--gold-light); font-weight: 300; }
+.hero-desc {
+  font-size: 1.05rem; color: rgba(255,255,255,0.65);
+  max-width: 480px; margin-bottom: 2.5rem; line-height: 1.75;
+}
+.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--gold); color: var(--navy);
+  padding: 0.75rem 1.75rem; border-radius: var(--radius-sm);
+  font-size: 0.9rem; font-weight: 600; text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+.btn-outline {
+  border: 1.5px solid rgba(255,255,255,0.35); color: var(--white);
+  padding: 0.75rem 1.75rem; border-radius: var(--radius-sm);
+  font-size: 0.9rem; font-weight: 500; text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+}
+.btn-outline:hover { border-color: white; background: rgba(255,255,255,0.07); }
+.hero-cards { display: flex; flex-direction: column; gap: 1rem; }
+.hero-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 1.5rem 1.75rem;
+  position: relative; overflow: hidden;
+  transition: border-color 0.2s, background 0.2s;
+  text-decoration: none;
+  display: block;
+}
+.hero-card:hover { border-color: rgba(201,150,46,0.5); background: rgba(255,255,255,0.09); }
+.hero-card-badge {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold);
+  background: rgba(201,150,46,0.12);
+  padding: 0.25rem 0.6rem; border-radius: 20px;
+  display: inline-block; margin-bottom: 0.75rem;
+}
+.hero-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.25rem; font-weight: 500; color: var(--white);
+  margin-bottom: 0.4rem;
+}
+.hero-card-sub { font-size: 0.82rem; color: rgba(255,255,255,0.5); }
+.hero-card-arrow {
+  position: absolute; right: 1.5rem; top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.4rem; color: var(--gold); opacity: 0.5;
+  transition: opacity 0.2s, right 0.2s;
+}
+.hero-card:hover .hero-card-arrow { opacity: 1; right: 1.25rem; }
+
+/* ── STATS STRIP ─────────────────────────────── */
+.stats-strip {
+  background: var(--cream);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem;
+}
+.stats-inner {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1rem; text-align: center;
+}
+.stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 2.2rem; font-weight: 700; color: var(--navy);
+  display: block; line-height: 1;
+}
+.stat-label { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.3rem; font-weight: 500; }
+.stat-divider { border: none; border-right: 1px solid var(--border); }
+
+/* ── SECTION GENERIC ─────────────────────────────── */
+.section { padding: 5rem 2rem; }
+.section-alt { background: var(--cream); }
+.section-dark { background: var(--navy); color: white; }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-label {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 0.75rem; display: block;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 700; line-height: 1.2;
+  color: var(--navy); margin-bottom: 1rem;
+}
+.section-dark .section-title { color: var(--white); }
+.section-sub {
+  font-size: 1.05rem; color: var(--text-muted);
+  max-width: 620px; line-height: 1.75; margin-bottom: 3rem;
+}
+.section-dark .section-sub { color: rgba(255,255,255,0.6); }
+
+/* ── COMPARISON ─────────────────────────────── */
+.compare-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1.5rem; margin-top: 2rem;
+}
+.compare-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  transition: box-shadow 0.2s;
+}
+.compare-card:hover { box-shadow: 0 8px 32px rgba(17,34,64,0.1); }
+.compare-card-header {
+  padding: 1.75rem 2rem 1.5rem;
+  background: var(--navy);
+}
+.compare-card.gm .compare-card-header { background: var(--navy2); }
+.compare-card-level {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 0.5rem; display: block;
+}
+.compare-card-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.6rem; font-weight: 700; color: white; margin-bottom: 0.25rem;
+}
+.compare-card-code { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+.compare-card-body { padding: 1.75rem 2rem; }
+.compare-item {
+  display: flex; gap: 0.75rem; align-items: flex-start;
+  padding: 0.7rem 0; border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+}
+.compare-item:last-child { border-bottom: none; }
+.compare-item-label { color: var(--text-muted); min-width: 130px; font-weight: 500; flex-shrink: 0; }
+.compare-item-val { color: var(--text); font-weight: 500; }
+.compare-highlight { color: var(--gold); font-weight: 600; }
+.compare-cta {
+  display: block; margin: 1.25rem 2rem 1.75rem;
+  padding: 0.7rem; text-align: center;
+  background: var(--navy); color: white;
+  border-radius: var(--radius-sm); text-decoration: none;
+  font-size: 0.85rem; font-weight: 600;
+  transition: background 0.2s;
+}
+.compare-card.gm .compare-cta { background: var(--navy2); }
+.compare-cta:hover { background: var(--gold); color: var(--navy); }
+
+/* ── ACCESS ─────────────────────────────── */
+.access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem; }
+.access-card {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.75rem; background: var(--white);
+}
+.access-card h3 {
+  font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 500;
+  color: var(--navy); margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem; border-bottom: 2px solid var(--gold);
+  display: flex; align-items: center; gap: 0.5rem;
+}
+.access-route {
+  display: flex; align-items: flex-start; gap: 0.75rem;
+  padding: 0.6rem 0; border-bottom: 1px solid var(--cream2);
+  font-size: 0.86rem;
+}
+.access-route:last-child { border-bottom: none; }
+.access-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0; margin-top: 5px;
+}
+.access-note {
+  margin-top: 1rem; padding: 0.75rem 1rem;
+  background: rgba(201,150,46,0.08); border-left: 3px solid var(--gold);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  font-size: 0.82rem; color: var(--text-muted); line-height: 1.5;
+}
+
+/* ── TABS + MODULES ─────────────────────────────── */
+.tab-bar {
+  display: flex; gap: 0.5rem; margin-bottom: 2rem;
+  border-bottom: 2px solid var(--border); padding-bottom: 0;
+}
+.tab-btn {
+  background: none; border: none; cursor: pointer;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem; font-weight: 600; color: var(--text-muted);
+  padding: 0.75rem 1.5rem; border-bottom: 2px solid transparent;
+  margin-bottom: -2px; transition: color 0.2s, border-color 0.2s;
+}
+.tab-btn.active { color: var(--navy); border-bottom-color: var(--gold); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+.accordion-group { margin-bottom: 1rem; }
+.accordion-header {
+  width: 100%; background: none; border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  background: var(--navy); color: white;
+  border-radius: var(--radius-sm);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  transition: background 0.2s;
+}
+.accordion-header:hover { background: var(--navy2); }
+.accordion-header.open { border-radius: var(--radius-sm) var(--radius-sm) 0 0; background: var(--navy2); }
+.acc-icon { font-size: 1.2rem; transition: transform 0.3s; }
+.accordion-header.open .acc-icon { transform: rotate(45deg); }
+.accordion-body {
+  display: none;
+  border: 1px solid var(--border); border-top: none;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  overflow: hidden;
+}
+.accordion-body.open { display: block; }
+.module-row {
+  display: grid; grid-template-columns: 1fr auto;
+  align-items: center; gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.module-row:last-child { border-bottom: none; }
+.module-row:hover { background: var(--cream); }
+.module-name { font-size: 0.9rem; font-weight: 500; color: var(--text); }
+.module-hours {
+  font-size: 0.78rem; font-weight: 700; color: var(--gold);
+  background: rgba(201,150,46,0.1); padding: 0.25rem 0.6rem;
+  border-radius: 20px; white-space: nowrap;
+}
+.fempo-row {
+  background: rgba(17,34,64,0.04);
+  display: flex; align-items: center; gap: 1rem;
+  padding: 1rem 1.5rem; border-top: 2px solid var(--gold);
+  font-size: 0.88rem;
+}
+.fempo-badge {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--white);
+  background: var(--navy); padding: 0.3rem 0.7rem;
+  border-radius: 20px; flex-shrink: 0;
+}
+.fempo-text { color: var(--text-muted); }
+.fempo-hours { margin-left: auto; font-weight: 700; color: var(--navy); white-space: nowrap; }
+
+/* ── FEMPO SECTION ─────────────────────────────── */
+.fempo-section {
+  background: var(--navy);
+  padding: 4rem 2rem;
+}
+.fempo-inner { max-width: 1100px; margin: 0 auto; }
+.fempo-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
+.fempo-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 2rem 1.75rem; text-align: center;
+}
+.fempo-num {
+  font-family: 'Fraunces', serif;
+  font-size: 3rem; font-weight: 700; color: var(--gold);
+  display: block; line-height: 1; margin-bottom: 0.5rem;
+}
+.fempo-card-label { font-size: 0.82rem; color: rgba(255,255,255,0.6); font-weight: 500; }
+.fempo-card-desc { font-size: 0.8rem; color: rgba(255,255,255,0.4); margin-top: 0.5rem; }
+
+/* ── SORTIDES ─────────────────────────────── */
+.sortides-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem; margin-top: 2rem;
+}
+.sortida-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.25rem 1rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.sortida-card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(17,34,64,0.06); }
+.sortida-icon { font-size: 1.6rem; }
+.sortida-name { font-size: 0.88rem; font-weight: 600; color: var(--navy); line-height: 1.3; }
+.sortida-level {
+  font-size: 0.7rem; font-weight: 600; padding: 0.2rem 0.5rem;
+  border-radius: 20px; display: inline-block; width: fit-content;
+}
+.level-gm { background: rgba(30,58,95,0.1); color: var(--navy2); }
+.level-gs { background: rgba(201,150,46,0.12); color: #8B6010; }
+.level-both { background: rgba(30,107,79,0.1); color: var(--success); }
+
+/* ── CONVALIDACIONS ─────────────────────────────── */
+.conv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 2rem; }
+.conv-card {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.75rem; background: var(--white);
+}
+.conv-card h3 {
+  font-family: 'Fraunces', serif; font-size: 1.1rem; font-weight: 500;
+  color: var(--navy); margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem; border-bottom: 2px solid var(--navy);
+}
+.conv-item {
+  display: flex; gap: 0.75rem; align-items: flex-start;
+  padding: 0.65rem 0; border-bottom: 1px solid var(--cream2);
+  font-size: 0.86rem;
+}
+.conv-item:last-child { border-bottom: none; }
+.conv-check { color: var(--success); font-size: 1rem; flex-shrink: 0; margin-top: 1px; }
+.conv-big {
+  margin-top: 1.5rem; padding: 1.25rem;
+  background: var(--navy); border-radius: var(--radius-sm); color: white;
+}
+.conv-big-num {
+  font-family: 'Fraunces', serif; font-size: 2.5rem; font-weight: 700; color: var(--gold);
+  display: block; line-height: 1;
+}
+.conv-big-label { font-size: 0.82rem; color: rgba(255,255,255,0.65); margin-top: 0.25rem; }
+
+/* ── VIDEOS ─────────────────────────────── */
+.videos-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+.video-placeholder {
+  border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--border); background: var(--white);
+  transition: box-shadow 0.2s;
+}
+.video-placeholder:hover { box-shadow: 0 8px 24px rgba(17,34,64,0.1); }
+.video-thumb {
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  display: flex; align-items: center; justify-content: center;
+  flex-direction: column; gap: 0.75rem; position: relative;
+  cursor: pointer;
+}
+.video-play {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(201,150,46,0.9);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+.video-placeholder:hover .video-play { background: var(--gold); transform: scale(1.08); }
+.video-play svg { width: 20px; height: 20px; fill: var(--navy); margin-left: 2px; }
+.video-soon {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+}
+.video-body { padding: 1.25rem; }
+.video-tag {
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 0.5rem; display: block;
+}
+.video-title { font-size: 0.9rem; font-weight: 600; color: var(--navy); line-height: 1.4; }
+.video-desc { font-size: 0.78rem; color: var(--text-muted); margin-top: 0.4rem; }
+.video-notice {
+  margin-top: 1.5rem; padding: 1rem 1.25rem;
+  background: rgba(201,150,46,0.07);
+  border: 1px solid rgba(201,150,46,0.2);
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem; color: var(--text-muted); text-align: center;
+}
+
+/* ── TESTIMONIALS ─────────────────────────────── */
+.testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2rem; }
+.testimonial-card {
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 1.75rem; background: var(--white); position: relative;
+}
+.testimonial-quote {
+  font-family: 'Fraunces', serif; font-size: 3rem;
+  color: var(--cream2); line-height: 0.5; margin-bottom: 1rem;
+  display: block;
+}
+.testimonial-placeholder-text {
+  font-size: 0.88rem; font-style: italic; color: rgba(107,116,128,0.5);
+  line-height: 1.6; margin-bottom: 1.25rem;
+  border: 1.5px dashed var(--border);
+  padding: 0.75rem; border-radius: var(--radius-sm);
+  text-align: center;
+}
+.testimonial-author { display: flex; align-items: center; gap: 0.75rem; }
+.testimonial-avatar {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--cream2); border: 2px dashed var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; color: var(--text-muted);
+}
+.testimonial-name { font-size: 0.84rem; font-weight: 600; color: var(--navy); }
+.testimonial-role { font-size: 0.75rem; color: var(--text-muted); }
+
+/* ── CENTRE ─────────────────────────────── */
+.centre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.centre-features { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+.centre-feature {
+  display: flex; gap: 1rem; padding: 1.25rem;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-sm);
+}
+.centre-feature-icon {
+  font-size: 1.4rem; width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(201,150,46,0.15); border-radius: 8px; flex-shrink: 0;
+}
+.centre-feature-title { font-size: 0.9rem; font-weight: 600; color: white; margin-bottom: 0.2rem; }
+.centre-feature-desc { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+.centre-map {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.centre-map iframe { display: block; width: 100%; height: 280px; border: none; filter: grayscale(0.3); }
+.centre-info {
+  padding: 1.25rem;
+  display: flex; flex-direction: column; gap: 0.5rem;
+}
+.centre-info-item { display: flex; gap: 0.75rem; align-items: center; font-size: 0.85rem; color: rgba(255,255,255,0.65); }
+.centre-info-icon { color: var(--gold); width: 18px; text-align: center; flex-shrink: 0; }
+
+/* ── FAQ ─────────────────────────────── */
+.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+.faq-item { border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+.faq-q {
+  width: 100%; background: var(--white); border: none; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.1rem 1.25rem; text-align: left;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem; font-weight: 600; color: var(--navy);
+  transition: background 0.15s;
+}
+.faq-q:hover { background: var(--cream); }
+.faq-q.open { background: var(--navy); color: white; }
+.faq-arrow { font-size: 1rem; transition: transform 0.3s; flex-shrink: 0; }
+.faq-q.open .faq-arrow { transform: rotate(45deg); }
+.faq-a {
+  display: none; padding: 1.1rem 1.25rem;
+  font-size: 0.84rem; color: var(--text-muted); line-height: 1.7;
+  background: var(--cream); border-top: 1px solid var(--border);
+}
+.faq-a.open { display: block; }
+
+/* ── CTA FINAL ─────────────────────────────── */
+.cta-section {
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  text-align: center;
+}
+.cta-inner { max-width: 700px; margin: 0 auto; }
+.cta-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700; color: white; margin-bottom: 1rem; line-height: 1.2;
+}
+.cta-title em { font-style: italic; color: var(--gold-light); font-weight: 300; }
+.cta-sub { font-size: 1rem; color: rgba(255,255,255,0.6); margin-bottom: 2.5rem; line-height: 1.75; }
+.cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.contact-chips { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem; }
+.contact-chip {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px; padding: 0.5rem 1rem;
+  font-size: 0.82rem; color: rgba(255,255,255,0.7);
+  text-decoration: none; transition: background 0.2s;
+}
+.contact-chip:hover { background: rgba(255,255,255,0.12); }
+.contact-chip-icon { color: var(--gold); }
+
+/* ── FOOTER ─────────────────────────────── */
+footer {
+  background: #0c1a30; color: rgba(255,255,255,0.4);
+  padding: 2rem; text-align: center;
+  font-size: 0.78rem; border-top: 1px solid rgba(255,255,255,0.07);
+}
+footer a { color: rgba(255,255,255,0.4); text-decoration: none; }
+footer a:hover { color: var(--gold); }
+
+/* ── RESPONSIVE ─────────────────────────────── */
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-cards { display: none; }
+  .compare-grid, .access-grid, .conv-grid, .centre-grid, .faq-grid { grid-template-columns: 1fr; }
+  .fempo-cards { grid-template-columns: 1fr 1fr; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .videos-grid, .testimonials-grid { grid-template-columns: 1fr; }
+  .sortides-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  nav { padding: 0 1rem; }
+  .nav-links, .nav-cta-wrap { display: none; }
+  .nav-menu-btn { display: block; }
+  .section { padding: 3.5rem 1.25rem; }
+  .fempo-cards { grid-template-columns: 1fr; }
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── ANIMATIONS ─────────────────────────────── */
+.fade-up { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: none; }
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" style="text-decoration:none">
+    <div class="nav-brand">
+      <span class="nav-brand-title">Administració i Gestió</span>
+      <span class="nav-brand-sub">IES Pasqual Calbó i Caldés · Maó</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#cicles">Els cicles</a></li>
+    <li><a href="#acces">Accés</a></li>
+    <li><a href="#modules">Continguts</a></li>
+    <li><a href="#sortides">Sortides</a></li>
+    <li><a href="#convalidacions">Universitat</a></li>
+    <li><a href="#centre">El centre</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-cta-wrap">
+    <a href="#contacte" class="nav-cta">Demana informació →</a>
+  </div>
+  <button class="nav-menu-btn" aria-label="Menú" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" style="display:none; position:fixed; top:64px; left:0; right:0; background:var(--navy); z-index:99; padding:1.5rem; flex-direction:column; gap:1rem;">
+  <a href="#cicles" style="color:white;text-decoration:none;font-size:1rem;font-weight:500">Els cicles</a>
+  <a href="#acces" style="color:white;text-decoration:none;font-size:1rem;font-weight:500">Accés</a>
+  <a href="#modules" style="color:white;text-decoration:none;font-size:1rem;font-weight:500">Continguts</a>
+  <a href="#sortides" style="color:white;text-decoration:none;font-size:1rem;font-weight:500">Sortides</a>
+  <a href="#centre" style="color:white;text-decoration:none;font-size:1rem;font-weight:500">El centre</a>
+  <a href="#contacte" class="btn-primary" style="text-align:center">Demana informació</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div>
+      <span class="hero-label">Departament d'Administració · IES Pasqual Calbó</span>
+      <h1 class="hero-title">El teu futur<br><em>professional</em><br>comença aquí</h1>
+      <p class="hero-desc">Forma't com a professional d'administració i finances a Menorca. Dos cicles adaptat a cada moment vital: grau mitjà o grau superior, matí o tarda.</p>
+      <div class="hero-buttons">
+        <a href="#cicles" class="btn-primary">Descobreix els cicles <span>→</span></a>
+        <a href="#contacte" class="btn-outline">Demana informació</a>
+      </div>
+    </div>
+    <div class="hero-cards">
+      <a href="#adg21" class="hero-card">
+        <span class="hero-card-badge">Grau Mitjà</span>
+        <div class="hero-card-title">Gestió Administrativa</div>
+        <div class="hero-card-sub">ADG21 · Tècnic/a en Gestió Administrativa · 2.000 h</div>
+        <span class="hero-card-arrow">→</span>
+      </a>
+      <a href="#adg32" class="hero-card">
+        <span class="hero-card-badge">Grau Superior</span>
+        <div class="hero-card-title">Administració i Finances</div>
+        <div class="hero-card-sub">ADG32 · Tècnic/a Superior · 2.000 h</div>
+        <span class="hero-card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div>
+      <span class="stat-num">2.000</span>
+      <div class="stat-label">Hores de formació total</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div>
+      <span class="stat-num">500</span>
+      <div class="stat-label">Hores d'empresa (FEMPO)</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div>
+      <span class="stat-num">60</span>
+      <div class="stat-label">Crèdits convalidables a ADE</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div>
+      <span class="stat-num">4</span>
+      <div class="stat-label">Grups disponibles (matí i tarda)</div>
+    </div>
+  </div>
+</div>
+
+<!-- CICLES COMPARACIÓ -->
+<section id="cicles" class="section">
+  <div class="section-inner">
+    <span class="section-label fade-up">Els nostres cicles</span>
+    <h2 class="section-title fade-up">Quin cicle és per a tu?</h2>
+    <p class="section-sub fade-up">Tots dos cicles pertanyen a la família professional d'Administració i Gestió i preparen per treballar en qualsevol tipus d'empresa. La diferència és el nivell de responsabilitat i el ventall de sortides.</p>
+    <div class="compare-grid">
+      <div class="compare-card gm fade-up">
+        <div class="compare-card-header">
+          <span class="compare-card-level">Cicle Formatiu de Grau Mitjà</span>
+          <div class="compare-card-title">Gestió Administrativa</div>
+          <div class="compare-card-code">ADG21 · Tècnic/a en Gestió Administrativa</div>
+        </div>
+        <div class="compare-card-body">
+          <div class="compare-item"><span class="compare-item-label">Durada</span><span class="compare-item-val">2.000 hores · 2 cursos</span></div>
+          <div class="compare-item"><span class="compare-item-label">Nivell</span><span class="compare-item-val">Grau Mitjà (EQF Nivell 3)</span></div>
+          <div class="compare-item"><span class="compare-item-label">Accés</span><span class="compare-item-val">Graduat ESO o prova d'accés</span></div>
+          <div class="compare-item"><span class="compare-item-label">Horari</span><span class="compare-item-val compare-highlight">Matí 8–14:05 (A i B)<br>Tarda 15:05–21:05 (C i D)</span></div>
+          <div class="compare-item"><span class="compare-item-label">FEMPO empresa</span><span class="compare-item-val compare-highlight">500 h (150 h 1r + 350 h 2n)</span></div>
+          <div class="compare-item"><span class="compare-item-label">Titulació</span><span class="compare-item-val">Tècnic/a en Gestió Administrativa</span></div>
+          <div class="compare-item"><span class="compare-item-label">Sortida natural</span><span class="compare-item-val">Món laboral o accés a CFGS (ADG32)</span></div>
+        </div>
+        <a href="#adg21" class="compare-cta">Veure continguts ADG21 →</a>
+      </div>
+      <div class="compare-card fade-up">
+        <div class="compare-card-header">
+          <span class="compare-card-level">Cicle Formatiu de Grau Superior</span>
+          <div class="compare-card-title">Administració i Finances</div>
+          <div class="compare-card-code">ADG32 · Tècnic/a Superior en Administració i Finances</div>
+        </div>
+        <div class="compare-card-body">
+          <div class="compare-item"><span class="compare-item-label">Durada</span><span class="compare-item-val">2.000 hores · 2 cursos</span></div>
+          <div class="compare-item"><span class="compare-item-label">Nivell</span><span class="compare-item-val">Grau Superior (EQF Nivell 5)</span></div>
+          <div class="compare-item"><span class="compare-item-label">Accés</span><span class="compare-item-val">Batxillerat, CFGM o prova d'accés</span></div>
+          <div class="compare-item"><span class="compare-item-label">Horari</span><span class="compare-item-val compare-highlight">Tarda 15:05–21:05 (A i B)</span></div>
+          <div class="compare-item"><span class="compare-item-label">FEMPO empresa</span><span class="compare-item-val compare-highlight">500 h (150 h 1r + 350 h 2n)</span></div>
+          <div class="compare-item"><span class="compare-item-label">Titulació</span><span class="compare-item-val">Tècnic/a Superior en Administració i Finances</span></div>
+          <div class="compare-item"><span class="compare-item-label">Sortida natural</span><span class="compare-item-val">Món laboral o accés a la Universitat</span></div>
+        </div>
+        <a href="#adg32" class="compare-cta">Veure continguts ADG32 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACCÉS -->
+<section id="acces" class="section section-alt">
+  <div class="section-inner">
+    <span class="section-label fade-up">Com accedir</span>
+    <h2 class="section-title fade-up">Formes d'accés</h2>
+    <p class="section-sub fade-up">Hi ha diverses vies per accedir als cicles. Comprova quina s'adapta millor a la teva situació actual.</p>
+    <div class="access-grid">
+      <div class="access-card fade-up">
+        <h3>📘 ADG21 — Grau Mitjà</h3>
+        <div class="access-route"><div class="access-dot"></div><span>Títol de Graduat/da en Educació Secundària Obligatòria (ESO)</span></div>
+        <div class="access-route"><div class="access-dot"></div><span>Títol de Tècnic/a o Tècnic/a Auxiliar (FP1)</span></div>
+        <div class="access-route"><div class="access-dot"></div><span>Superació del 2n curs de BUP o equivalent</span></div>
+        <div class="access-route"><div class="access-dot"></div><span>Prova d'accés a cicles de grau mitjà (mínim 17 anys)</span></div>
+        <div class="access-route"><div class="access-dot"></div><span>Prova d'accés a la universitat per a majors de 25 anys</span></div>
+        <div class="access-note">💡 Si no complexes cap dels requisits però tens 17 anys o més, pots superar la <strong>prova d'accés</strong> específica per a cicles de grau mitjà.</div>
+      </div>
+      <div class="access-card fade-up">
+        <h3>📗 ADG32 — Grau Superior</h3>
+        <div class="access-route"><div class="access-dot"></div><span>Títol de Batxillerat (qualsevol modalitat)</span></div>
+        <div class="access-route"><div class="access-dot"></div><span>Superació d'un CFGM com ADG21 (accés directe sense prova)</span></div>
+        <div class="access-route"><div class="access-dot"></div><span>Títol de FP-2 o equivalent reconegut</span></div>
+        <div class="access-route"><div class="access-dot"></div><span>Prova d'accés a cicles de grau superior (mínim 19 anys)</span></div>
+        <div class="access-route"><div class="access-dot"></div><span>Prova d'accés a la universitat per a majors de 25 anys</span></div>
+        <div class="access-note">⭐ Si tens el títol d'ADG21, pots <strong>accedir directament</strong> a ADG32 sense necessitat de cap prova d'accés.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÒDULS -->
+<section id="modules" class="section">
+  <div class="section-inner">
+    <span class="section-label fade-up">Pla d'estudis</span>
+    <h2 class="section-title fade-up">Continguts per curs</h2>
+    <p class="section-sub fade-up">Explora els mòduls professionals de cada cicle. Selecciona el cicle i desplega cada curs per veure els continguts detallats.</p>
+
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchTab('adg21', this)" id="adg21">📘 ADG21 — Gestió Administrativa</button>
+      <button class="tab-btn" onclick="switchTab('adg32', this)" id="adg32">📗 ADG32 — Administració i Finances</button>
+    </div>
+
+    <!-- ADG21 -->
+    <div class="tab-panel active" id="panel-adg21">
+      <div class="accordion-group">
+        <button class="accordion-header open" onclick="toggleAccordion(this)">
+          <span>1r Curs</span> <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-body open">
+          <div class="module-row"><span class="module-name">Comunicació empresarial i atenció al client</span><span class="module-hours">99 h</span></div>
+          <div class="module-row"><span class="module-name">Operacions administratives de compravenda</span><span class="module-hours">132 h</span></div>
+          <div class="module-row"><span class="module-name">Empresa i Administració</span><span class="module-hours">99 h</span></div>
+          <div class="module-row"><span class="module-name">Tractament Informàtic de la Informació</span><span class="module-hours">165 h</span></div>
+          <div class="module-row"><span class="module-name">Tècnica Comptable</span><span class="module-hours">132 h</span></div>
+          <div class="module-row"><span class="module-name">Digitalització aplicada als sectors productius</span><span class="module-hours">66 h</span></div>
+          <div class="module-row"><span class="module-name">Itinerari Personal per a l'Ocupabilitat I</span><span class="module-hours">66 h</span></div>
+          <div class="module-row"><span class="module-name">Anglès Professional I</span><span class="module-hours">99 h</span></div>
+          <div class="fempo-row"><span class="fempo-badge">FEMPO</span><span class="fempo-text">Formació en empresa — 1r contacte amb el món laboral real</span><span class="fempo-hours">150 h</span></div>
+        </div>
+      </div>
+      <div class="accordion-group">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          <span>2n Curs</span> <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="module-row"><span class="module-name">Empresa a l'aula (simulació empresarial real)</span><span class="module-hours">165 h</span></div>
+          <div class="module-row"><span class="module-name">Tractament de la documentació comptable</span><span class="module-hours">132 h</span></div>
+          <div class="module-row"><span class="module-name">Operacions administratives de recursos humans</span><span class="module-hours">132 h</span></div>
+          <div class="module-row"><span class="module-name">Operacions auxiliars de gestió de tresoreria</span><span class="module-hours">132 h</span></div>
+          <div class="module-row"><span class="module-name">Itinerari Personal per a l'Ocupabilitat II</span><span class="module-hours">33 h</span></div>
+          <div class="module-row"><span class="module-name">Anglès Professional II</span><span class="module-hours">66 h</span></div>
+          <div class="fempo-row"><span class="fempo-badge">FEMPO</span><span class="fempo-text">Formació en empresa — immersió completa en una empresa real</span><span class="fempo-hours">350 h</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADG32 -->
+    <div class="tab-panel" id="panel-adg32">
+      <div class="accordion-group">
+        <button class="accordion-header open" onclick="toggleAccordion(this)">
+          <span>1r Curs</span> <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-body open">
+          <div class="module-row"><span class="module-name">Gestió de la documentació jurídica i empresarial</span><span class="module-hours">90 h</span></div>
+          <div class="module-row"><span class="module-name">Recursos humans i responsabilitat social corporativa</span><span class="module-hours">66 h</span></div>
+          <div class="module-row"><span class="module-name">Ofimàtica i procés de la informació</span><span class="module-hours">132 h</span></div>
+          <div class="module-row"><span class="module-name">Procés integral de l'activitat comercial</span><span class="module-hours">132 h</span></div>
+          <div class="module-row"><span class="module-name">Gestió de recursos humans</span><span class="module-hours">66 h</span></div>
+          <div class="module-row"><span class="module-name">Anglès Professional I</span><span class="module-hours">99 h</span></div>
+          <div class="module-row"><span class="module-name">Digitalització aplicada als sectors productius</span><span class="module-hours">66 h</span></div>
+          <div class="module-row"><span class="module-name">Itinerari Personal per a l'Ocupabilitat I</span><span class="module-hours">66 h</span></div>
+          <div class="fempo-row"><span class="fempo-badge">FEMPO</span><span class="fempo-text">Formació en empresa — 1r contacte amb el món laboral real</span><span class="fempo-hours">150 h</span></div>
+        </div>
+      </div>
+      <div class="accordion-group">
+        <button class="accordion-header" onclick="toggleAccordion(this)">
+          <span>2n Curs</span> <span class="acc-icon">+</span>
+        </button>
+        <div class="accordion-body">
+          <div class="module-row"><span class="module-name">Gestió financera</span><span class="module-hours">132 h</span></div>
+          <div class="module-row"><span class="module-name">Comptabilitat i fiscalitat</span><span class="module-hours">132 h</span></div>
+          <div class="module-row"><span class="module-name">Gestió logística i comercial</span><span class="module-hours">99 h</span></div>
+          <div class="module-row"><span class="module-name">Simulació empresarial</span><span class="module-hours">99 h</span></div>
+          <div class="module-row"><span class="module-name">Projecte d'administració i finances</span><span class="module-hours">33 h</span></div>
+          <div class="module-row"><span class="module-name">Anglès Professional II</span><span class="module-hours">66 h</span></div>
+          <div class="module-row"><span class="module-name">Itinerari Personal per a l'Ocupabilitat II</span><span class="module-hours">33 h</span></div>
+          <div class="fempo-row"><span class="fempo-badge">FEMPO</span><span class="fempo-text">Formació en empresa — immersió completa en una empresa real</span><span class="fempo-hours">350 h</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEMPO -->
+<div class="fempo-section">
+  <div class="fempo-inner">
+    <span class="section-label" style="color:var(--gold)">Nou sistema de pràctiques</span>
+    <h2 class="section-title" style="color:white; margin-bottom:0.5rem">FEMPO: formació en empresa<br><em style="font-family:Fraunces,serif;font-style:italic;font-weight:300;color:var(--gold-light)">des del primer curs</em></h2>
+    <p style="font-size:1rem;color:rgba(255,255,255,0.55);max-width:600px;line-height:1.75;margin-top:0.75rem">El nou pla formatiu LOIFP substitueix les antigues FCT per les <strong style="color:white">FEMPO</strong> (Formació i Entrenament en el Món Professional i Ocupacional). La gran novetat: comences a treballar a una empresa real <strong style="color:var(--gold-light)">des del primer any</strong>.</p>
+    <div class="fempo-cards">
+      <div class="fempo-card">
+        <span class="fempo-num">150h</span>
+        <div class="fempo-card-label">FEMPO al 1r curs</div>
+        <div class="fempo-card-desc">Primer contacte amb el món laboral mentre estudies els mòduls teòrics</div>
+      </div>
+      <div class="fempo-card">
+        <span class="fempo-num">350h</span>
+        <div class="fempo-card-label">FEMPO al 2n curs</div>
+        <div class="fempo-card-desc">Immersió completa en una empresa real per aplicar tot el que has après</div>
+      </div>
+      <div class="fempo-card">
+        <span class="fempo-num">500h</span>
+        <div class="fempo-card-label">Total en empresa</div>
+        <div class="fempo-card-desc">Experiència laboral real avalada pel títol oficial del Ministeri d'Educació</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SORTIDES PROFESSIONALS -->
+<section id="sortides" class="section">
+  <div class="section-inner">
+    <span class="section-label fade-up">On treballaràs</span>
+    <h2 class="section-title fade-up">Sortides professionals</h2>
+    <p class="section-sub fade-up">Els titulats en administració i gestió treballen en qualsevol empresa, independentment del sector. Aquí tens les principals posicions del mercat laboral.</p>
+    <div class="sortides-grid">
+      <div class="sortida-card fade-up"><div class="sortida-icon">🏢</div><div class="sortida-name">Auxiliar / Administratiu/va d'oficina</div><span class="sortida-level level-both">ADG21 i ADG32</span></div>
+      <div class="sortida-card fade-up"><div class="sortida-icon">🤝</div><div class="sortida-name">Administratiu/va comercial</div><span class="sortida-level level-both">ADG21 i ADG32</span></div>
+      <div class="sortida-card fade-up"><div class="sortida-icon">👥</div><div class="sortida-name">Auxiliar de recursos humans</div><span class="sortida-level level-both">ADG21 i ADG32</span></div>
+      <div class="sortida-card fade-up"><div class="sortida-icon">🏛️</div><div class="sortida-name">Administratiu/va Administracions Públiques</div><span class="sortida-level level-both">ADG21 i ADG32</span></div>
+      <div class="sortida-card fade-up"><div class="sortida-icon">📋</div><div class="sortida-name">Recepcionista / Atenció al client</div><span class="sortida-level level-gm">ADG21</span></div>
+      <div class="sortida-card fade-up"><div class="sortida-icon">💰</div><div class="sortida-name">Auxiliar de tresoreria i cobraments</div><span class="sortida-level level-gm">ADG21</span></div>
+      <div class="sortida-card fade-up"><div class="sortida-icon">📊</div><div class="sortida-name">Administratiu/va financer/a i comptable</div><span class="sortida-level level-gs">ADG32</span></div>
+      <div class="sortida-card fade-up"><div class="sortida-icon">🏦</div><div class="sortida-name">Sector bancari i assegurances</div><span class="sortida-level level-gs">ADG32</span></div>
+      <div class="sortida-card fade-up"><div class="sortida-icon">📝</div><div class="sortida-name">Assessories fiscals, laborals i gestories</div><span class="sortida-level level-gs">ADG32</span></div>
+      <div class="sortida-card fade-up"><div class="sortida-icon">🔍</div><div class="sortida-name">Tècnic/a d'auditoria comptable</div><span class="sortida-level level-gs">ADG32</span></div>
+      <div class="sortida-card fade-up"><div class="sortida-icon">📦</div><div class="sortida-name">Administratiu/va de logística</div><span class="sortida-level level-gs">ADG32</span></div>
+      <div class="sortida-card fade-up"><div class="sortida-icon">🚀</div><div class="sortida-name">Responsable atenció al client</div><span class="sortida-level level-gs">ADG32</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONVALIDACIONS -->
+<section id="convalidacions" class="section section-alt">
+  <div class="section-inner">
+    <span class="section-label fade-up">Continuar estudiant</span>
+    <h2 class="section-title fade-up">Convalidacions i accés a la universitat</h2>
+    <p class="section-sub fade-up">Acabar un CFGS no tanca cap porta universitària. Tot el contrari: s'obren ataills que permeten arribar abans al grau.</p>
+    <div class="conv-grid">
+      <div class="conv-card fade-up">
+        <h3>Des d'ADG21 — Grau Mitjà</h3>
+        <div class="conv-item"><span class="conv-check">✓</span><span>Accés directe a ADG32 (Grau Superior) sense prova d'accés</span></div>
+        <div class="conv-item"><span class="conv-check">✓</span><span>Accés a altres CFGS de la família d'Administració i Gestió</span></div>
+        <div class="conv-item"><span class="conv-check">✓</span><span>Cursar el Batxillerat amb possibles convalidacions de matèries</span></div>
+        <div class="conv-item"><span class="conv-check">✓</span><span>Grau C de Nivell 3 i Grau E de Nivell 2 del sistema EQF</span></div>
+        <div class="conv-item"><span class="conv-check">✓</span><span>Accés a Certificats de Professionalitat de nivell superior</span></div>
+      </div>
+      <div class="conv-card fade-up">
+        <h3>Des d'ADG32 — Grau Superior</h3>
+        <div class="conv-item"><span class="conv-check">✓</span><span>Accés a la universitat amb <strong>reserva del 20% de places</strong></span></div>
+        <div class="conv-item"><span class="conv-check">✓</span><span>Fins a <strong>60 crèdits convalidats al Grau d'ADE</strong> → curses ADE en 3 anys en lloc de 4</span></div>
+        <div class="conv-item"><span class="conv-check">✓</span><span>Convalidacions al Grau d'Economia, Dret i Relacions Laborals</span></div>
+        <div class="conv-item"><span class="conv-check">✓</span><span>Accés a qualsevol altre CFGS sense necessitat de prova</span></div>
+        <div class="conv-item"><span class="conv-check">✓</span><span>Títol reconegut a tota la Unió Europea (suplement Europass)</span></div>
+        <div class="conv-big">
+          <span class="conv-big-num">60</span>
+          <div class="conv-big-label">crèdits universitaris convalidables a ADE.<br>Cursa el grau en <strong>3 anys</strong> en lloc de 4.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VÍDEOS PROMOCIONALS -->
+<section id="videos" class="section">
+  <div class="section-inner">
+    <span class="section-label fade-up">Coneix-nos de prop</span>
+    <h2 class="section-title fade-up">Vídeos del departament</h2>
+    <p class="section-sub fade-up">Aviat podràs veure de primera mà com és estudiar administració al Pasqual Calbó.</p>
+    <div class="videos-grid">
+      <div class="video-placeholder fade-up">
+        <div class="video-thumb">
+          <div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="video-soon">Pròximament</span>
+        </div>
+        <div class="video-body">
+          <span class="video-tag">ADG21 · Grau Mitjà</span>
+          <div class="video-title">Un dia a Gestió Administrativa</div>
+          <div class="video-desc">Descobreix com és el dia a dia d'un estudiant d'ADG21 al nostre centre.</div>
+        </div>
+      </div>
+      <div class="video-placeholder fade-up">
+        <div class="video-thumb">
+          <div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="video-soon">Pròximament</span>
+        </div>
+        <div class="video-body">
+          <span class="video-tag">ADG32 · Grau Superior</span>
+          <div class="video-title">Administració i Finances: el teu futur</div>
+          <div class="video-desc">Mòduls, pràctiques i sortides professionals del cicle superior.</div>
+        </div>
+      </div>
+      <div class="video-placeholder fade-up">
+        <div class="video-thumb">
+          <div class="video-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+          <span class="video-soon">Pròximament</span>
+        </div>
+        <div class="video-body">
+          <span class="video-tag">FEMPO · Pràctiques</span>
+          <div class="video-title">Les nostres empreses col·laboradores</div>
+          <div class="video-desc">Coneix les empreses de Menorca on fan les FEMPO els nostres alumnes.</div>
+        </div>
+      </div>
+    </div>
+    <div class="video-notice">🎬 Els vídeos estan en producció. Aviat estaran disponibles en aquesta mateixa pàgina.</div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonis" class="section section-alt">
+  <div class="section-inner">
+    <span class="section-label fade-up">El que diuen els nostres alumnes</span>
+    <h2 class="section-title fade-up">Testimonis</h2>
+    <p class="section-sub fade-up">Aviat compartirem les experiències reals dels nostres antics alumnes. Estem recopilant els seus testimonis.</p>
+    <div class="testimonials-grid">
+      <div class="testimonial-card fade-up">
+        <span class="testimonial-quote">"</span>
+        <div class="testimonial-placeholder-text">Testimoni en preparació · Pròximament</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👤</div>
+          <div><div class="testimonial-name">Exalumne/a ADG21</div><div class="testimonial-role">Empresa · Menorca</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <span class="testimonial-quote">"</span>
+        <div class="testimonial-placeholder-text">Testimoni en preparació · Pròximament</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👤</div>
+          <div><div class="testimonial-name">Exalumne/a ADG32</div><div class="testimonial-role">Empresa · Menorca</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card fade-up">
+        <span class="testimonial-quote">"</span>
+        <div class="testimonial-placeholder-text">Testimoni en preparació · Pròximament</div>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👤</div>
+          <div><div class="testimonial-name">Exalumne/a ADG32</div><div class="testimonial-role">Universitat · ADE</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EL CENTRE -->
+<section id="centre" class="section section-dark">
+  <div class="section-inner">
+    <div class="centre-grid">
+      <div>
+        <span class="section-label" style="color:var(--gold)">El nostre centre</span>
+        <h2 class="section-title">IES Pasqual Calbó i Caldés</h2>
+        <p style="font-size:1rem;color:rgba(255,255,255,0.6);line-height:1.75;margin-bottom:2rem;max-width:460px">Un dels instituts de referència a Menorca, amb una llarga trajectòria en formació professional de qualitat i participació activa en projectes europeus Erasmus+.</p>
+        <div class="centre-features">
+          <div class="centre-feature">
+            <div class="centre-feature-icon">🌍</div>
+            <div><div class="centre-feature-title">Programa Erasmus+</div><div class="centre-feature-desc">Possibilitat de realitzar part de les FEMPO en empreses europees a través del programa Erasmus+</div></div>
+          </div>
+          <div class="centre-feature">
+            <div class="centre-feature-icon">💻</div>
+            <div><div class="centre-feature-title">Eines digitals d'última generació</div><div class="centre-feature-desc">Treballem amb software professional: Google Workspace, Moodle, aplicacions de gestió empresarial i comptabilitat</div></div>
+          </div>
+          <div class="centre-feature">
+            <div class="centre-feature-icon">🕐</div>
+            <div><div class="centre-feature-title">Horaris flexibles</div><div class="centre-feature-desc">Grups de matí (8–14:05) i tarda (15:05–21:05) per adaptar-se a tota mena de situacions personals</div></div>
+          </div>
+          <div class="centre-feature">
+            <div class="centre-feature-icon">🎓</div>
+            <div><div class="centre-feature-title">Orientació acadèmica i professional</div><div class="centre-feature-desc">Servei d'orientació per ajudar-te a decidir el teu itinerari formatiu i professional</div></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="centre-map">
+          <iframe title="Mapa IES Pasqual Calbó" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3088.5!2d4.2642!3d39.8897!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMznCsDUzJzIzLjEiTiA0wrAxNSc1MS4xIkU!5e0!3m2!1sca!2ses!4v1" allowfullscreen="" loading="lazy"></iframe>
+          <div class="centre-info">
+            <div class="centre-info-item"><span class="centre-info-icon">📍</span><span>C/ Francesc F. Andreu, 1 · 07702 Maó, Menorca</span></div>
+            <div class="centre-info-item"><span class="centre-info-icon">🌐</span><a href="https://www.iespasqualcalbo.cat/blocs/inici/" target="_blank" style="color:rgba(255,255,255,0.65);text-decoration:none">www.iespasqualcalbo.cat</a></div>
+            <div class="centre-info-item"><span class="centre-info-icon">📘</span><a href="https://www.facebook.com/IES-Pasqual-Calb%C3%B3-i-Cald%C3%A9s-195177040512183/" target="_blank" style="color:rgba(255,255,255,0.65);text-decoration:none">Facebook del centre</a></div>
+            <div class="centre-info-item"><span class="centre-info-icon">📸</span><a href="https://www.instagram.com/iespasqualcalbo/" target="_blank" style="color:rgba(255,255,255,0.65);text-decoration:none">@iespasqualcalbo</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section">
+  <div class="section-inner">
+    <span class="section-label fade-up">Preguntes freqüents</span>
+    <h2 class="section-title fade-up">Ho tenim clar</h2>
+    <p class="section-sub fade-up">Les preguntes que es fan la majoria d'estudiants abans d'inscriure's.</p>
+    <div class="faq-grid">
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">Puc estudiar si estic treballant? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Sí. Disposem de grups de tarda (15:05–21:05) precisament per a persones que treballen durant el matí. A més, la modalitat semipresencial pot estar disponible per a casos especials documentats.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">Quin és el requisit mínim per accedir a ADG21? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">El requisit general és tenir el títol de Graduat/da en ESO. Si no el tens, pots accedir mitjançant la prova d'accés a cicles de grau mitjà, sempre que tinguis almenys 17 anys en l'any d'inici del cicle.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">Si acabo ADG21, puc passar a ADG32 sense prova? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Sí, completament. Tenir el títol de CFGM com ADG21 et dona accés directe a qualsevol CFGS relacionat, inclòs ADG32, sense necessitat de cap prova d'accés addicional.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">Quantes hores faré a una empresa real? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Amb el nou sistema FEMPO, faràs un total de 500 hores en empresa: 150 hores durant el primer curs i 350 hores durant el segon. Això és molt més que l'antic sistema de FCT i t'assegura experiència laboral real des del primer any.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">Puc accedir a la universitat amb el CFGS? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Sí. El títol d'ADG32 t'habilita per accedir a la universitat amb reserva del 20% de places. A més, si t'interessa el Grau d'ADE, pots obtenir fins a 60 crèdits convalidats, la qual cosa et permet completar el grau en 3 anys en lloc de 4.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">El títol és vàlid a tota Europa? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Sí. Pots descarregar-te gratuïtament el suplement Europass des del portal TodoFP. Aquest document certifica la teva titulació en format europeu i permet que empreses i institucions educatives d'altres països de la UE reconeguin les teves competències.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">Hi ha beques disponibles? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Sí. El Ministeri d'Educació convoca anualment beques per a ensenyaments post-obligatoris no universitaris. A la web del centre pots trobar informació actualitzada sobre les convocatòries vigents.</div>
+      </div>
+      <div class="faq-item fade-up">
+        <button class="faq-q" onclick="toggleFaq(this)">Puc convalidar mòduls si véns d'un altre cicle? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Sí, és possible convalidar mòduls professionals si proves que tens competències equivalents adquirides en altres cicles formatius, titulacions universitàries o per experiència laboral acreditada. Cal consultar la normativa específica de convalidacions amb la secretaria del centre.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="contacte" class="cta-section">
+  <div class="cta-inner">
+    <span class="section-label" style="color:var(--gold);display:block;margin-bottom:1rem">Pren la decisió</span>
+    <h2 class="cta-title">Prepara el teu <em>futur professional</em><br>a Menorca</h2>
+    <p class="cta-sub">El Departament d'Administració de l'IES Pasqual Calbó t'espera. Si tens dubtes sobre quin cicle és el teu o com accedir-hi, posa't en contacte amb nosaltres.</p>
+    <div class="cta-buttons">
+      <a href="https://www.iespasqualcalbo.cat/blocs/inici/contacte/" target="_blank" class="btn-primary">Contactar amb el centre →</a>
+      <a href="https://www.iespasqualcalbo.cat/blocs/inici/estudis/proves-dacces/" target="_blank" class="btn-outline">Proves d'accés</a>
+    </div>
+    <div class="contact-chips">
+      <a href="https://www.iespasqualcalbo.cat/blocs/inici/" target="_blank" class="contact-chip"><span class="contact-chip-icon">🌐</span> iespasqualcalbo.cat</a>
+      <a href="https://www.instagram.com/iespasqualcalbo/" target="_blank" class="contact-chip"><span class="contact-chip-icon">📸</span> @iespasqualcalbo</a>
+      <span class="contact-chip"><span class="contact-chip-icon">📍</span> C/ Francesc F. Andreu, 1 · Maó</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 IES Pasqual Calbó i Caldés · Departament d'Administració i Gestió · <a href="https://www.iespasqualcalbo.cat/blocs/inici/politica-de-privadesa/">Política de privacitat</a> · <a href="https://www.iespasqualcalbo.cat/blocs/inici/avis-cookies/">Avís de cookies</a></p>
+  <p style="margin-top:0.5rem">Formació Professional · ADG21 Gestió Administrativa · ADG32 Administració i Finances · Maó, Menorca</p>
+</footer>
+
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+}
+
+function toggleAccordion(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  btn.parentElement.parentElement.querySelectorAll('.accordion-header').forEach(b => {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) { btn.classList.add('open'); body.classList.add('open'); }
+}
+
+function toggleFaq(btn) {
+  const ans = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  btn.classList.toggle('open', !isOpen);
+  ans.classList.toggle('open', !isOpen);
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+const mobileMenu = document.getElementById('mobile-menu');
+mobileMenu.style.display = 'none';
+document.querySelector('.nav-menu-btn').addEventListener('click', () => {
+  mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'flex' : 'none';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.style.display = 'none'; }));
+</script>
+</body>
+</html>
